@@ -1,10 +1,9 @@
-
 <div class="container">
   <h1>Pokédex</h1>
   <input class="search" type="text" [(ngModel)]="termoBuscado" placeholder="Pesquisar..." name="pesquisa">
   <div class="pokedex">
     <div class="screen" *ngIf="termoBuscado != '' else semBusca"> <!-- -->
-      <div class="pokemonContainer" *ngFor="let pokemon of pokedex">
+      <div class="pokemonContainer" [class.hidden]="!pokemon.name.includes(termoBuscado)" *ngFor="let pokemon of pokedex">
         <div class="pokemon" *ngIf="pokemon.name.includes(termoBuscado)">
           <img [src]="pokemon.image" [alt]="pokemon.name">
           <p>{{pokemon.name}}</p>
