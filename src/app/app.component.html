@@ -4,18 +4,54 @@
   <div class="pokedex">
     <div class="screen" *ngIf="termoBuscado != '' else semBusca"> <!-- -->
       <div class="pokemonContainer" [class.hidden]="!pokemon.name.includes(termoBuscado)" *ngFor="let pokemon of pokedex">
-        <div class="pokemon" *ngIf="pokemon.name.includes(termoBuscado)">
-          <img [src]="pokemon.image" [alt]="pokemon.name">
-          <p>{{pokemon.name}}</p>
+        <div class="pokemon" [class.grass]="pokemon.types.includes('planta')"
+            [class.fire]="pokemon.types.includes('fogo')"
+            [class.water]="pokemon.types.includes('agua')"
+            [class.bug]="pokemon.types.includes('inseto')">
+          <div>
+            <p class="pokeNome">{{pokemon.name}}</p>
+            <ul>
+              <li class="badge"
+               *ngFor="let type of pokemon.types"
+                [class.grass]="type == 'planta'"
+                [class.fire]="type == 'fogo'"
+                [class.water]="type == 'agua'"
+                [class.bug]="type == 'inseto'"
+                [class.poison]="type == 'veneno'"
+                [class.flying]="type == 'voador'"
+                >
+                {{type}}
+              </li>
+            </ul>
+          </div>
+          <div><img [src]="pokemon.image" class="pokemonImg" [alt]="pokemon.name"></div>
         </div>
       </div>
     </div>
 
     <ng-template #semBusca>
       <div class="pokemonContainer" *ngFor="let pokemon of pokedex">
-        <div class="pokemon">
-          <img [src]="pokemon.image" [alt]="pokemon.name">
-          <p>{{pokemon.name}}</p>
+        <div class="pokemon" [class.grass]="pokemon.types.includes('planta')"
+            [class.fire]="pokemon.types.includes('fogo')"
+            [class.water]="pokemon.types.includes('agua')"
+            [class.bug]="pokemon.types.includes('inseto')">
+          <div>
+            <p class="pokeNome">{{pokemon.name}}</p>
+            <ul>
+              <li class="badge"
+               *ngFor="let type of pokemon.types"
+                [class.grass]="type == 'planta'"
+                [class.fire]="type == 'fogo'"
+                [class.water]="type == 'agua'"
+                [class.bug]="type == 'inseto'"
+                [class.poison]="type == 'veneno'"
+                [class.flying]="type == 'voador'"
+                >
+                {{type}}
+              </li>
+            </ul>
+          </div>
+          <div><img [src]="pokemon.image" class="pokemonImg" [alt]="pokemon.name"></div>
         </div>
       </div>
     </ng-template>
