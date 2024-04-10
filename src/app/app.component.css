@@ -27,8 +27,6 @@ h1 {
 .pokedex {
   width: 70%;
   height: 75vh;
-  overflow-y: scroll;
-  scrollbar-color: white #000;
   border-radius: 50px;
   padding: 4% 1%;
   box-sizing: border-box;
@@ -36,8 +34,13 @@ h1 {
   flex-wrap: wrap;
   justify-content: space-evenly;
   background-color: white;
+  position: relative;
 }
 
+.scroll {
+  overflow-y: scroll;
+  scrollbar-color: white #000;
+}
 
 .screen {
   width: 100%;
@@ -101,6 +104,53 @@ ul {
 .pokemonImg {
   width: 100%;
   height: 100%;
+}
+
+.modal {
+  position: absolute;
+  top: 20px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: #000 0px 5px 10px 0px;
+}
+
+.top-modal {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 50%;
+}
+
+.top-modal > div {
+  width: 50%;
+  height: 100%;
+}
+
+.top-modal > div > .pokeNome {
+  font-size: 2rem;
+}
+
+.body-modal {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 50%;
+}
+
+.body-modal > div {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.close {
+  border: none;
+  background: none;
+  position: absolute;
+  font-size: 1.5rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+  top: 1%;
+  right: 0.1%;
 }
 
 .hidden {

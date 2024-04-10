@@ -15,6 +15,8 @@ import { Pokemon } from '../model/pokemonModel';
 export class AppComponent {
   termoBuscado: string = '';
 
+  hidden: boolean = true;
+
   pokedex = [
     new Pokemon('Bulbasaur', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png', ['planta', 'veneno']),
     new Pokemon('Ivysaur', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png', ['planta', 'veneno']),
@@ -29,4 +31,18 @@ export class AppComponent {
     new Pokemon('Metapod', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/11.png', ['inseto']),
     new Pokemon('Butterfree', 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/12.png', ['inseto', 'voador']),
   ]
+
+  nomeModal: string = '';
+  imgModal: string = '';
+  tiposModal: string[] = [];
+  modal (nome: string, img: string, tipos: string[]) {
+    console.log("oi")
+    this.hidden = !this.hidden;
+    this.nomeModal = nome;
+    this.imgModal = img;
+    this.tiposModal = tipos
+  }
+  close() {
+    this.hidden = !this.hidden
+  }
 }
