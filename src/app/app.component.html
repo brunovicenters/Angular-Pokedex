@@ -1,10 +1,11 @@
+<div class="cover" [class.hidden]="hidden"></div>
 <div class="container">
   <h1>Pokédex</h1>
   <input class="search" type="text" [(ngModel)]="termoBuscado" placeholder="Pesquisar..." name="pesquisa">
   <div class="pokedex" [class.scroll]="hidden">
     <div class="screen" *ngIf="termoBuscado != '' else semBusca"> <!-- -->
       <div class="pokemonContainer" [class.hidden]="!pokemon.name.includes(termoBuscado)" *ngFor="let pokemon of pokedex">
-        <div class="pokemon" [class.grass]="pokemon.types.includes('planta')"
+        <div (click)="modal(pokemon.name, pokemon.image, pokemon.types, pokemon.abilities, pokemon.weight, pokemon.height)" class="pokemon" [class.grass]="pokemon.types.includes('planta')"
             [class.fire]="pokemon.types.includes('fogo')"
             [class.water]="pokemon.types.includes('agua')"
             [class.bug]="pokemon.types.includes('inseto')">
@@ -31,7 +32,7 @@
 
     <ng-template #semBusca>
       <div class="pokemonContainer" *ngFor="let pokemon of pokedex">
-        <div (click)="modal(pokemon.name, pokemon.image, pokemon.types)" class="pokemon" [class.grass]="pokemon.types.includes('planta')"
+        <div (click)="modal(pokemon.name, pokemon.image, pokemon.types, pokemon.abilities, pokemon.weight, pokemon.height)" class="pokemon" [class.grass]="pokemon.types.includes('planta')"
             [class.fire]="pokemon.types.includes('fogo')"
             [class.water]="pokemon.types.includes('agua')"
             [class.bug]="pokemon.types.includes('inseto')">
@@ -84,13 +85,21 @@
       </div>
 
       <div class="body-modal">
-        <div>
-          <p>Habilidade 1: Habilidade 1</p>
-          <p>Habilidade 2: Habilidade 2</p>
+        <div class="habilidades">
+          <p *ngFor="let ability of habilidadesModal"
+          class="badge"
+          [class.grass]="ability.type == 'planta'"
+          [class.fire]="ability.type == 'fogo'"
+          [class.water]="ability.type == 'agua'"
+          [class.bug]="ability.type == 'inseto'"
+          [class.poison]="ability.type == 'veneno'"
+          [class.flying]="ability.type == 'voador'"
+          [class.normal]="ability.type == 'normal'"
+          >{{ability.name}}</p>
         </div>
-        <div>
-          <p>Peso: Peso</p>
-          <p>Altura: Altura</p>
+        <div class="info">
+          <p>Peso: {{pesoModal}}</p>
+          <p>Altura: {{alturaModal}}</p>
         </div>
       </div>
       <button class="close" (click)="close()">X</button>
